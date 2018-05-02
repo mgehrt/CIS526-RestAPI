@@ -14,7 +14,20 @@ var datafile = "";
 function handleRequest(req, res) {
   if(req.method === 'POST' && req.url === '/courses') {
     return createCourse(req, res);
-  } else {
+  }
+  else if(req.method === 'GET' && req.url === '/courses') {
+    return readAll(req, res);
+  }
+  else if(req.method === 'GET' && req.url === '/courses/:id') {
+    return readOne(req, res);
+  }
+  else if(req.method === 'PUT' && req.url === '/courses/:id') {
+    return updateCourse(req, res);
+  }
+  else if(req.method === 'DELETE' && req.url === '/courses/:id'){
+    return deleteCourse(req, res);
+  }
+  else {
     res.statusCode = 400;
     res.end("Not implemented");
   }
@@ -32,7 +45,6 @@ function createCourse(req, res) {
     res.statusCode = 500;
     res.end("Server Error");
   });
-
   req.on('end', function(){
     try {
       var course = JSON.parse(jsonString);
@@ -54,6 +66,39 @@ function createCourse(req, res) {
     }
   });
 
+}
+
+
+function readAll(req, res){
+  req.on('error', function(err) {
+    console.error(err);
+    res.statusCode = 500;
+    res.end("Server Error");
+  });
+}
+
+function readOne(req, res) {
+  req.on('error', function(err) {
+    console.error(err);
+    res.statusCode = 500;
+    res.end("Server Error");
+  });
+}
+
+function updateCourse(req, res) {
+  req.on('error', function(err) {
+    console.error(err);
+    res.statusCode = 500;
+    res.end("Server Error");
+  });
+}
+
+function deleteCourse(req, res) {
+  req.on('error', function(err) {
+    console.error(err);
+    res.statusCode = 500;
+    res.end("Server Error");
+  });
 }
 
 /** @function load
