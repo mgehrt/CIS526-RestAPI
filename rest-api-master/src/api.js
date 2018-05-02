@@ -75,6 +75,20 @@ function readAll(req, res){
     res.statusCode = 500;
     res.end("Server Error");
   });
+
+  req.on('data', function(data) {
+    //do nothing
+  });
+
+  req.on('end', function(end) {
+    res.statusCode = 200;
+    var temp;
+    for(c in data.courses){
+      temp.push(data.courses[c]);
+    }
+
+    res.end(JSON.stringify(temp));
+  });
 }
 
 function readOne(req, res) {
@@ -82,6 +96,16 @@ function readOne(req, res) {
     console.error(err);
     res.statusCode = 500;
     res.end("Server Error");
+  });
+
+  req.on('data', function(data) {
+    //do nothing
+  });
+
+  req.on('end', function(end){
+    res.statusCode = 200;
+    var courseName = req.url.split('/').pop();
+    res.end(JSON.stringify(data.course[courseName]));
   });
 }
 
@@ -91,6 +115,8 @@ function updateCourse(req, res) {
     res.statusCode = 500;
     res.end("Server Error");
   });
+
+
 }
 
 function deleteCourse(req, res) {
@@ -99,6 +125,8 @@ function deleteCourse(req, res) {
     res.statusCode = 500;
     res.end("Server Error");
   });
+
+
 }
 
 /** @function load
