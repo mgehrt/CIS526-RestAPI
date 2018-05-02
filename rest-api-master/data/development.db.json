@@ -1,0 +1,28 @@
+{
+  "courses": {
+    "CIS115": {
+      "name": "CIS 115 - Introduction to Computer Science",
+      "credits": 3,
+      "desc": "A survey of the discipline of Computing Science and its interaction with other disciplines, incorporating historical development, theories, and tools of Computing Science (algorithm design and programming). Topics include: mechanical computers, digital computers, bioinformatics, microcontrollers, robotics, security, scientific computing, simulation, and web technologies.",
+      "requisites": "Prerequisite: None.",
+      "typicallyOffered": "Fall, Spring",
+      "kState8": "none"
+    },
+    "CIS200":{
+      "name": "CIS 200 - Fundamentals of Programming",
+      "credits": 3,
+      "desc": "Principles of algorithm design and their application to procedural programming: state, control structures, methods. Patterns of conditional and iterative control structure.  Program testing. Introduction to arrays, classes, and objects.  Programming projects.",
+      "requisites": "Prerequisite: CIS 115 or ECE 241. Prerequisite or concurrent enrollment: MATH 205 or MATH 220.  Students may enroll in CIS courses only if they have earned a grade of C or better for each prerequisite to those courses.",
+      "typicallyOffered": "Fall, Spring",
+      "kState8": "Empirical and Quantitative Reasoning"
+    },
+    "CIS300":{
+      "name": "CIS 300 - Data and Programming Structures",
+      "credits": 3,
+      "desc": "A study of common data and program structures together with associated algorithms. Topics include interfaces, design patterns, arrays, stacks, queues, lists, trees, hash tables, recursion, binary search, and tree traversals. Experience with both use and implementation of these structures and algorithms using a modern programming language. Discussion of tradeoffs involving performance and software maintainability.",
+      "requisites": "Prerequisite: CIS 200 and either MATH 205 or MATH 220.",
+      "typicallyOffered": "Fall, Spring",
+      "kState8": "Empirical and Quantitative Reasoning"
+    }
+  }
+}

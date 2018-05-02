@@ -1,0 +1,16 @@
+{
+  "name": "rest-api",
+  "version": "1.0.0",
+  "description": "A starting point for building a REST api",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js",
+    "test": "jest"
+  },
+  "author": "Nathan H. Bean",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^22.4.3",
+    "require": "^2.4.20"
+  }
+}
