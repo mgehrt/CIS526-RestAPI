@@ -18,13 +18,13 @@ function handleRequest(req, res) {
   else if(req.method === 'GET' && req.url === '/courses') {
     return readAll(req, res);
   }
-  else if(req.method === 'GET' && req.url === '/courses/:id') {
+  else if(req.method === 'GET' && req.url.includes('/courses/')) {
     return readOne(req, res);
   }
-  else if(req.method === 'PUT' && req.url === '/courses/:id') {
-    return updateCourse(req, res);
+    else if(req.method === 'PUT' && req.url.includes('/courses/')) {
+      return updateCourse(req, res);
   }
-  else if(req.method === 'DELETE' && req.url === '/courses/:id'){
+  else if(req.method === 'DELETE' && req.url.includes('/courses/')){
     return deleteCourse(req, res);
   }
   else {
@@ -82,7 +82,7 @@ function readAll(req, res){
 
   req.on('end', function(end) {
     res.statusCode = 200;
-    var temp;
+    var temp = [];
     for(c in data.courses){
       temp.push(data.courses[c]);
     }
@@ -98,14 +98,14 @@ function readOne(req, res) {
     res.end("Server Error");
   });
 
-  req.on('data', function(data) {
+  req.on('data', function() {
     //do nothing
   });
 
-  req.on('end', function(end){
+  req.on('end', function(){
     res.statusCode = 200;
     var courseName = req.url.split('/').pop();
-    res.end(JSON.stringify(data.course[courseName]));
+    res.end(JSON.stringify(data.courses[courseName]));
   });
 }
 
@@ -126,7 +126,12 @@ function deleteCourse(req, res) {
     res.end("Server Error");
   });
 
-
+  req.on('end', function(end) {
+    var courseName = req.url.split('/').pop();
+    delete data.courses[courseName];
+    save();
+    res.end();
+  });
 }
 
 /** @function load
