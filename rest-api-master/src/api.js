@@ -110,19 +110,31 @@ function readOne(req, res) {
 }
 
 function updateCourse(req, res) {
+  var jsonString ="";
+
   req.on('error', function(err) {
     console.error(err);
     res.statusCode = 500;
     res.end("Server Error");
   });
 
-  req.on('data', function(){
-    //do nothing
+  req.on('data', function(chunk){
+    jsonString += chunk;
   });
 
   req.on('end', function(){
     res.statusCode = 200;
-    
+    var course = JSON.parse(jsonString);
+    var tokens = course.name.split(" ");
+    if(tokens.length < 2) {
+        res.statusCode = 422;
+        res.end("Poorly formatted course entry");
+        return;
+    }
+    var courseName = req.url.split('/').pop();
+    data["courses"][courseName] = course;
+    save();
+    res.end(courseName);
   });
 }
 
