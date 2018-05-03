@@ -21,8 +21,8 @@ function handleRequest(req, res) {
   else if(req.method === 'GET' && req.url.includes('/courses/')) {
     return readOne(req, res);
   }
-    else if(req.method === 'PUT' && req.url.includes('/courses/')) {
-      return updateCourse(req, res);
+  else if(req.method === 'PUT' && req.url.includes('/courses/')) {
+    return updateCourse(req, res);
   }
   else if(req.method === 'DELETE' && req.url.includes('/courses/')){
     return deleteCourse(req, res);
@@ -116,7 +116,14 @@ function updateCourse(req, res) {
     res.end("Server Error");
   });
 
+  req.on('data', function(){
+    //do nothing
+  });
 
+  req.on('end', function(){
+    res.statusCode = 200;
+    
+  });
 }
 
 function deleteCourse(req, res) {
@@ -126,7 +133,12 @@ function deleteCourse(req, res) {
     res.end("Server Error");
   });
 
-  req.on('end', function(end) {
+  req.on('data', function(){
+    //do nothing
+  });
+
+  req.on('end', function( ) {
+    res.statusCode = 200;
     var courseName = req.url.split('/').pop();
     delete data.courses[courseName];
     save();
